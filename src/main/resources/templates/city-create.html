@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create city</title>
+</head>
+<body>
+<td><a th:href="@{/main}">Main</a></td>
+<br>
+<td><a th:href="@{/cities}">Cities</a></td>
+<br>
+<br>
+<form action="#" th:action="@{/city-create}" th:object="${city}" method="post">
+    <label for="cityName">City</label>
+    <input type="text" th:field="*{cityName}" id="cityName" placeholder="City">
+
+    <select th:field="*{country}">
+        <option value=""> -- </option>
+        <option th:each="city : ${cities}"
+                th:value="${city.country.id}"
+                th:text="${city.country.state}"></option>
+    </select>
+    <!--
+        <select th:object="${country}" th:field="*{state}">
+            <option value=""> -- </option>
+            <option th:each="country : ${countries}"
+                    th:value="${country.state}"
+                    th:text="${country.state}"></option>
+        </select>
+    -->
+    <input type="submit" value="Create City">
+</form>
+</body>
+</html>

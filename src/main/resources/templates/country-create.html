@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create country</title>
+</head>
+<body>
+<td><a th:href="@{/main}">Main</a></td>
+<br>
+<td><a th:href="@{/countries}">Countries</a></td>
+<br>
+<br>
+<form action="#" th:action="@{/country-create}" th:object="${country}" method="post">
+    <label for="state">State</label>
+    <input type="text" th:field="*{state}" id="state" placeholder="State">
+    <label for="currencyCode">Currency code</label>
+    <input type="text" th:field="*{currencyCode}" id="currencyCode" placeholder="Currency code">
+    <input type="submit" value="Create Country">
+</form>
+</body>
+</html>

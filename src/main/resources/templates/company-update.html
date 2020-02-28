@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Company</title>
+</head>
+<body>
+<td><a th:href="@{/main}">Main</a></td>
+<br>
+<td><a th:href="@{/companies}">Companies</a></td>
+<br>
+<br>
+<form action="#" th:action="@{/company-update}" th:object="${company}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
+    <label for="firm">Firm</label>
+    <input type="text" th:field="*{firm}" id="firm" placeholder="Firm">
+    <br/>
+
+
+
+    <input type="submit" value="Update Company">
+</form>
+</body>
+</html>

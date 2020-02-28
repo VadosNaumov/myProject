@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Cities</title>
+</head>
+<body>
+<td><a th:href="@{/main}">Main</a></td>
+<br>
+<br>
+<div th:switch="${cities}">
+    <h2 th:case="null">No cities found!</h2>
+    <div th:case="*">
+        <h2>Cities</h2>
+        <table cellspacing="5" cellpadding="10" border="1">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="city : ${cities}">
+                <td th:text="${city.id}"></td>
+                <td th:text="${city.cityName}"></td>
+                <td th:text="${city.country.state}"></td>
+                <td><a th:href="@{city-update/{id}(id=${city.id})}">Edit</a></td>
+                <td><a th:href="@{city-delete/{id}(id=${city.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/city-create">Create City</a></p>
+</div>
+</body>
+</html>

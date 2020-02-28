@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update city</title>
+</head>
+<body>
+<td><a th:href="@{/main}">Main</a></td>
+<br>
+<td><a th:href="@{/cities}">Cities</a></td>
+<br>
+<br>
+<form action="#" th:action="@{/city-update}" th:object="${city}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
+    <label for="cityName">City</label>
+    <input type="text" th:field="*{cityName}" id="cityName" placeholder="City">
+    <br/>
+    <!--    <label for="country.state">Country</label>
+        <input type="text" th:field="*{country.state}" id="country.state" placeholder="Country">
+        <br/>-->
+    <input type="submit" value="Update City">
+</form>
+</body>
+</html>
