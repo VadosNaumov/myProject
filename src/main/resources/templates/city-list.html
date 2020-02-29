@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Cities</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
 </head>
-<body>
-<td><a th:href="@{/main}">Main</a></td>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/countries}">Countries</a></td>
 <br>
 <br>
 <div th:switch="${cities}">
@@ -18,6 +26,7 @@
                 <th>Id</th>
                 <th>City</th>
                 <th>Country</th>
+                <th>Currency code</th>
             </tr>
             </thead>
             <tbody>
@@ -25,6 +34,7 @@
                 <td th:text="${city.id}"></td>
                 <td th:text="${city.cityName}"></td>
                 <td th:text="${city.country.state}"></td>
+                <td th:text="${city.country.currencyCode}"></td>
                 <td><a th:href="@{city-update/{id}(id=${city.id})}">Edit</a></td>
                 <td><a th:href="@{city-delete/{id}(id=${city.id})}">Delete</a></td>
             </tr>

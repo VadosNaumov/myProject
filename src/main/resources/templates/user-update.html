@@ -3,24 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Update user</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
 </head>
-<body>
-<td><a th:href="@{/main}">Main</a></td>
-<br>
-<td><a th:href="@{/users}">Users</a></td>
-<br>
-<br>
-<form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
-    <br/>
-    <label for="firstName">First name</label>
-    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
-    <br/>
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
-    <br/>
-    <input type="submit" value="Update User">
-</form>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/users}">Users</a></td>
+    <br>
+    <br>
+    <form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
+        <label for="id">ID</label>
+        <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+        <br/>
+        <label for="firstName">First name</label>
+        <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
+        <br/>
+        <label for="lastName">Last name</label>
+        <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
+        <br/>
+        <input type="submit" value="Update User">
+    </form>
+</h1>
 </body>
 </html>

@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Create city</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
 </head>
-<body>
-<td><a th:href="@{/main}">Main</a></td>
-<br>
-<td><a th:href="@{/cities}">Cities</a></td>
-<br>
-<br>
-<form action="#" th:action="@{/city-create}" th:object="${city}" method="post">
-    <label for="cityName">City</label>
-    <input type="text" th:field="*{cityName}" id="cityName" placeholder="City">
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/countries}">Countries</a></td>
+    <br>
+    <td><a th:href="@{/cities}">Cities</a></td>
+    <br>
+    <br>
+    <form action="#" th:action="@{/city-create}" th:object="${city}" method="post">
+        <label for="cityName">City</label>
+        <input type="text" th:field="*{cityName}" id="cityName" placeholder="City">
 
-    <select th:field="*{country}">
-        <option value=""> -- </option>
-        <option th:each="city : ${cities}"
-                th:value="${city.country.id}"
-                th:text="${city.country.state}"></option>
-    </select>
-    <!--
-        <select th:object="${country}" th:field="*{state}">
-            <option value=""> -- </option>
-            <option th:each="country : ${countries}"
-                    th:value="${country.state}"
-                    th:text="${country.state}"></option>
+        <select th:field="*{country}">
+            <option value=""> --</option>
+            <option th:each="city : ${cities}"
+                    th:value="${city.country.id}"
+                    th:text="${city.country.state}"></option>
         </select>
-    -->
-    <input type="submit" value="Create City">
-</form>
+
+        <input type="submit" value="Create City">
+    </form>
+</h1>
 </body>
 </html>

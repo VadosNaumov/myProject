@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Countries</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
 </head>
-<body>
+<body bgcolor="#b8d6c1">
+<h1>
 <td><a th:href="@{/main}">Main</a></td>
+<br>
+<td><a th:href="@{/cities}">Cities</a></td>
 <br>
 <br>
 <div th:switch="${countries}">
@@ -33,5 +41,6 @@
     </div>
     <p><a href="/country-create">Create country</a></p>
 </div>
+</h1>
 </body>
 </html>

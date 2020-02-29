@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Create user</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
 </head>
-<body>
+<body bgcolor="#b8d6c1">
+<h1>
 <td><a th:href="@{/main}">Main</a></td>
 <br>
 <td><a th:href="@{/users}">Users</a></td>
@@ -17,5 +23,6 @@
     <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
     <input type="submit" value="Create User">
 </form>
+</h1>
 </body>
 </html>

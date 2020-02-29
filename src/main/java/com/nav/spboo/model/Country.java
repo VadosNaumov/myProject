@@ -18,8 +18,34 @@ public class Country {
     private String state;
 
     @Column(name = "currency_code")
-    private String currencyCode;
+    private Integer currencyCode;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "country", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "country", cascade = CascadeType.DETACH)
     private Collection<City> cities;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public Integer getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public Collection<City> getCities() {
+        return cities;
+    }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id=" + id +
+                ", state='" + state + '\'' +
+                ", currencyCode=" + currencyCode +
+                ", cities=" + cities +
+                '}';
+    }
 }

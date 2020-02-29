@@ -16,7 +16,28 @@ public class City {
     @Column(name = "city_name")
     private String cityName;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
     private Country country;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", cityName='" + cityName + '\'' +
+                ", country=" + country.getState() +
+                '}';
+    }
 }

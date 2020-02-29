@@ -3,24 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Update city</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
 </head>
-<body>
-<td><a th:href="@{/main}">Main</a></td>
-<br>
-<td><a th:href="@{/cities}">Cities</a></td>
-<br>
-<br>
-<form action="#" th:action="@{/city-update}" th:object="${city}" method="post">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
-    <br/>
-    <label for="cityName">City</label>
-    <input type="text" th:field="*{cityName}" id="cityName" placeholder="City">
-    <br/>
-    <!--    <label for="country.state">Country</label>
-        <input type="text" th:field="*{country.state}" id="country.state" placeholder="Country">
-        <br/>-->
-    <input type="submit" value="Update City">
-</form>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/countries}">Countries</a></td>
+    <br>
+    <td><a th:href="@{/cities}">Cities</a></td>
+    <br>
+    <br>
+    <form action="#" th:action="@{/city-update}" th:object="${city}" method="post">
+        <label for="id">ID</label>
+        <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+        <br/>
+        <label for="cityName">City</label>
+        <input type="text" th:field="*{cityName}" id="cityName" placeholder="City">
+        <br/>
+
+        <select th:field="*{country}">
+            <option value=""> --</option>
+            <option th:each="city : ${cities}"
+                    th:value="${city.country.id}"
+                    th:text="${city.country.state}"></option>
+        </select>
+
+        <input type="submit" value="Update City">
+    </form>
+</h1>
 </body>
 </html>
