@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "cities")
-public class City {
+public class City implements Comparable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,18 +20,6 @@ public class City {
     @JoinColumn(name = "country_id")
     private Country country;
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getCityName() {
-        return cityName;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
     @Override
     public String toString() {
         return "City{" +
@@ -39,5 +27,11 @@ public class City {
                 ", cityName='" + cityName + '\'' +
                 ", country=" + country.getState() +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        City citySecond = (City) o;
+        return cityName.compareTo(citySecond.cityName);
     }
 }

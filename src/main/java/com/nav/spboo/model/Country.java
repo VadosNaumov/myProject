@@ -8,7 +8,7 @@ import java.util.Collection;
 @Data
 @Entity
 @Table(name = "countries")
-public class Country {
+public class Country implements Comparable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,29 +23,13 @@ public class Country {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "country", cascade = CascadeType.DETACH)
     private Collection<City> cities;
 
-    public Long getId() {
-        return id;
-    }
-
     public String getState() {
         return state;
     }
 
-    public Integer getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public Collection<City> getCities() {
-        return cities;
-    }
-
     @Override
-    public String toString() {
-        return "Country{" +
-                "id=" + id +
-                ", state='" + state + '\'' +
-                ", currencyCode=" + currencyCode +
-                ", cities=" + cities +
-                '}';
+    public int compareTo(Object o) {
+        Country countrySecond = (Country) o;
+        return state.compareTo(countrySecond.state);
     }
 }

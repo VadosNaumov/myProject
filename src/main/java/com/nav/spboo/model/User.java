@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Comparable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,4 +18,10 @@ public class User {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Override
+    public int compareTo(Object o) {
+        User userSecond = (User) o;
+        return firstName.compareTo(userSecond.firstName);
+    }
 }

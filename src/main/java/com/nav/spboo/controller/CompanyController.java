@@ -22,6 +22,7 @@ public class CompanyController {
     @GetMapping("/companies")
     public String findAll(Model model) {
         List<Company> companies = companyService.findAll();
+        companies.sort(Company::compareTo);
         model.addAttribute("companies", companies);
         return "company-list";
     }

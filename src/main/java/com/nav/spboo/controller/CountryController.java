@@ -22,6 +22,7 @@ public class CountryController {
     @GetMapping("/countries")
     public String findAll(Model model) {
         List<Country> countries = countryService.findAll();
+        countries.sort(Country::compareTo);
         model.addAttribute("countries", countries);
         return "/country-list";
     }

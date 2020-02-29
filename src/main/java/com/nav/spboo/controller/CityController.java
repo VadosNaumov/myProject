@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -22,6 +23,7 @@ public class CityController {
     @GetMapping("/cities")
     public String findAll(Model model){
         List<City> cities = cityService.findAll();
+        cities.sort(City::compareTo);
         model.addAttribute("cities", cities);
         return "/city-list";
     }
