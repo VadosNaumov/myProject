@@ -24,10 +24,18 @@ public class Company implements Comparable{
     @JoinColumn(name = "location")
     private City city;
 
+    @OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "account")
+    private Account account;
+
     @Override
     public int compareTo(Object o) {
         Company companySecond = (Company) o;
         return firm.compareTo(companySecond.firm);
+    }
+
+    public String getFirm() {
+        return firm;
     }
 
     @Override
@@ -38,6 +46,9 @@ public class Company implements Comparable{
                 ", user=" + user.getFirstName() + " " + user.getLastName() +
                 ", city=" + city.getCityName() +
                 ", country=" + city.getCountry().getState() +
+                ", account=" + account.getAccountNumber() +
+                ", bank=" + account.getBank().getBankName() +
                 '}';
     }
+
 }

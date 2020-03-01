@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update account</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
+</head>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/accounts}">Accounts</a></td>
+    <br>
+    <td><a th:href="@{/banks}">Banks</a></td>
+    <br>
+    <td><a th:href="@{/companies}">Companies</a></td>
+    <br>
+    <br>
+    <form action="#" th:action="@{/account-update}" th:object="${account}" method="post">
+        <label for="id">ID</label>
+        <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+        <br/>
+        <label for="accountNumber">Account</label>
+        <input type="text" th:field="*{accountNumber}" id="accountNumber" placeholder="Account">
+        <br/>
+
+        <select th:field="*{bank}">
+            <option value=""> --</option>
+            <option th:each="bank : ${banks}"
+                    th:value="${bank.id}"
+                    th:text="${bank.bankName}"></option>
+        </select>
+        <br/>
+        <select th:field="*{company}">
+            <option value=""> --</option>
+            <option th:each="company : ${companies}"
+                    th:value="${company.id}"
+                    th:text="${company.firm}"></option>
+        </select>
+        <br/>
+        <input type="submit" value="Update Account">
+    </form>
+</h1>
+</body>
+</html>

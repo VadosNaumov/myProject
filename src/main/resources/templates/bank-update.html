@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update bank</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
+</head>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/banks}">Banks</a></td>
+    <br>
+    <td><a th:href="@{/accounts}">Accounts</a></td>
+    <br>
+    <br>
+    <form action="#" th:action="@{/bank-update}" th:object="${bank}" method="post">
+        <label for="id">ID</label>
+        <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+        <br/>
+        <label for="bankName">Bank</label>
+        <input type="text" th:field="*{bankName}" id="bankName" placeholder="Bank">
+        <br/>
+        <input type="submit" value="Update Bank">
+    </form>
+</h1>
+</body>
+</html>

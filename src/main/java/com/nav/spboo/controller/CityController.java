@@ -1,7 +1,9 @@
 package com.nav.spboo.controller;
 
 import com.nav.spboo.model.City;
+import com.nav.spboo.model.Country;
 import com.nav.spboo.service.CityService;
+import com.nav.spboo.service.CountryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +16,11 @@ import java.util.List;
 public class CityController {
 
     private final CityService cityService;
+    private final CountryService countryService;
 
-    public CityController(CityService cityService) {
+    public CityController(CityService cityService, CountryService countryService) {
         this.cityService = cityService;
+        this.countryService = countryService;
     }
 
     @GetMapping("/cities")
@@ -30,8 +34,9 @@ public class CityController {
     @GetMapping("/city-create")
     public String createCityForm(City city, Model model){
         model.addAttribute("city", city);
-        List<City> cities = cityService.findAll();
-        model.addAttribute("cities", cities);
+
+        List<Country> countries = countryService.findAll();
+        model.addAttribute("countries", countries);
         return "/city-create";
     }
 
@@ -52,8 +57,8 @@ public class CityController {
         City city = cityService.findById(id);
         model.addAttribute("city", city);
 
-        List<City> cities = cityService.findAll();
-        model.addAttribute("cities", cities);
+        List<Country> countries = countryService.findAll();
+        model.addAttribute("countries", countries);
         return "/city-update";
     }
 

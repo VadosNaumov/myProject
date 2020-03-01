@@ -28,9 +28,9 @@
 
         <select th:field="*{country}">
             <option value=""> --</option>
-            <option th:each="city : ${cities}"
-                    th:value="${city.country.id}"
-                    th:text="${city.country.state}"></option>
+            <option th:each="country : ${countries}"
+                    th:value="${country.id}"
+                    th:text="${country.state}"></option>
         </select>
         <br/>
         <input type="submit" value="Update City">

@@ -26,16 +26,22 @@
 
         <select th:field="*{user}">
             <option value=""> --</option>
-            <option th:each="company : ${companies}"
-                    th:value="${company.user.id}"
-                    th:text="${company.user.firstName} + ${company.user.lastName}"></option>
+            <option th:each="user : ${users}"
+                    th:value="${user.id}"
+                    th:text="${user.firstName} + ${user.lastName}"></option>
 
         </select>
         <select th:field="*{city}">
             <option value=""> --</option>
-            <option th:each="company : ${companies}"
-                    th:value="${company.city.id}"
-                    th:text="${company.city.cityName}"></option>
+            <option th:each="city : ${cities}"
+                    th:value="${city.id}"
+                    th:text="${city.cityName}"></option>
+        </select>
+        <select th:field="*{account}">
+            <option value=""> --</option>
+            <option th:each="account : ${accounts}"
+                    th:value="${account.id}"
+                    th:text="${account.accountNumber}"></option>
         </select>
         <input type="submit" value="Create Company">
     </form>

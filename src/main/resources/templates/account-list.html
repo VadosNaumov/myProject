@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Accounts</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
+</head>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/banks}">Banks</a></td>
+    <br>
+    <br>
+    <div th:switch="${accounts}">
+        <h2 th:case="null">No accounts found!</h2>
+        <div th:case="*">
+            <h2>Accounts</h2>
+            <table cellspacing="5" cellpadding="10" border="1">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Account</th>
+                    <th>Bank</th>
+                    <th>Company</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="account : ${accounts}">
+                    <td th:text="${account.id}"></td>
+                    <td th:text="${account.accountNumber}"></td>
+                    <td th:text="${account.bank.bankName}"></td>
+                    <td th:text="${account.company.firm}"></td>
+                    <td><a th:href="@{account-update/{id}(id=${account.id})}">Edit</a></td>
+                    <td><a th:href="@{account-delete/{id}(id=${account.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/account-create">Create Account</a></p>
+    </div>
+</h1>
+</body>
+</html>

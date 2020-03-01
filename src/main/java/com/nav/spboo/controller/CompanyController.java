@@ -1,7 +1,13 @@
 package com.nav.spboo.controller;
 
+import com.nav.spboo.model.Account;
+import com.nav.spboo.model.City;
 import com.nav.spboo.model.Company;
+import com.nav.spboo.model.User;
+import com.nav.spboo.service.AccountService;
+import com.nav.spboo.service.CityService;
 import com.nav.spboo.service.CompanyService;
+import com.nav.spboo.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +20,15 @@ import java.util.List;
 public class CompanyController {
 
     private final CompanyService companyService;
+    private final AccountService accountService;
+    private final CityService cityService;
+    private final UserService userService;
 
-    public CompanyController(CompanyService companyService) {
+    public CompanyController(CompanyService companyService, AccountService accountService, CityService cityService, UserService userService) {
         this.companyService = companyService;
+        this.accountService = accountService;
+        this.cityService = cityService;
+        this.userService = userService;
     }
 
     @GetMapping("/companies")
@@ -30,8 +42,12 @@ public class CompanyController {
     @GetMapping("/company-create")
     public String createCompanyForm(Company company, Model model) {
         model.addAttribute("company", company);
-        List<Company> companies = companyService.findAll();
-        model.addAttribute("companies", companies);
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+        List<City> cities = cityService.findAll();
+        model.addAttribute("cities", cities);
+        List<Account> accounts = accountService.findAll();
+        model.addAttribute("accounts", accounts);
         return "company-create";
     }
 
@@ -51,8 +67,12 @@ public class CompanyController {
     public String updateCompanyForm(@PathVariable("id") Long id, Model model) {
         Company company = companyService.findById(id);
         model.addAttribute("company", company);
-        List<Company> companies = companyService.findAll();
-        model.addAttribute("companies", companies);
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+        List<City> cities = cityService.findAll();
+        model.addAttribute("cities", cities);
+        List<Account> accounts = accountService.findAll();
+        model.addAttribute("accounts", accounts);
         return "/company-update";
     }
 

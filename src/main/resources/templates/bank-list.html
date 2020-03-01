@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Banks</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
+</head>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/accounts}">Accounts</a></td>
+    <br>
+    <br>
+    <div th:switch="${banks}">
+        <h2 th:case="null">No banks found!</h2>
+        <div th:case="*">
+            <h2>Banks</h2>
+            <table cellspacing="5" cellpadding="10" border="1">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Bank</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="bank : ${banks}">
+                    <td th:text="${bank.id}"></td>
+                    <td th:text="${bank.bankName}"></td>
+                    <td><a th:href="@{bank-update/{id}(id=${bank.id})}">Edit</a></td>
+                    <td><a th:href="@{bank-delete/{id}(id=${bank.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/bank-create">Create bank</a></p>
+    </div>
+</h1>
+</body>
+</html>

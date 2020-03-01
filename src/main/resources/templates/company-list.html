@@ -17,6 +17,8 @@
     <br>
     <td><a th:href="@{/cities}">Cities</a></td>
     <br>
+    <td><a th:href="@{/accounts}">Accounts</a></td>
+    <br>
     <br>
     <div th:switch="${companies}">
         <h2 th:case="null">No companies found!</h2>
@@ -31,6 +33,7 @@
                     <th>Director l.name</th>
                     <th>City</th>
                     <th>Country</th>
+                    <th>Account</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,6 +44,7 @@
                     <td th:text="${company.user.lastName}"></td>
                     <td th:text="${company.city.cityName}"></td>
                     <td th:text="${company.city.country.state}"></td>
+                    <td th:text="${company.account.accountNumber}"></td>
                     <td><a th:href="@{company-update/{id}(id=${company.id})}">Edit</a></td>
                     <td><a th:href="@{company-delete/{id}(id=${company.id})}">Delete</a></td>
                 </tr>
