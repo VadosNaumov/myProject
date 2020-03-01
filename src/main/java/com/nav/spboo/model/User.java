@@ -3,6 +3,7 @@ package com.nav.spboo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -18,6 +19,17 @@ public class User implements Comparable{
 
     @Column(name = "last_name")
     private String lastName;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.DETACH)
+    private Collection<Company> companies;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 
     @Override
     public int compareTo(Object o) {

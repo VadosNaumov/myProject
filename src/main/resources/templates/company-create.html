@@ -11,18 +11,26 @@
 </head>
 <body bgcolor="#b8d6c1">
 <h1>
-<td><a th:href="@{/main}">Main</a></td>
-<br>
-<td><a th:href="@{/companies}">Companies</a></td>
-<br>
-<br>
-<form action="#" th:action="@{/company-create}" th:object="${company}" method="post">
-    <label for="firm">Firm</label>
-    <input type="text" th:field="*{firm}" id="firm" placeholder="Firm">
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/companies}">Companies</a></td>
+    <br>
+    <td><a th:href="@{/users}">Users</a></td>
+    <br>
+    <br>
+    <form action="#" th:action="@{/company-create}" th:object="${company}" method="post">
+        <label for="firm">Firm</label>
+        <input type="text" th:field="*{firm}" id="firm" placeholder="Firm">
 
+        <select th:field="*{user}">
+            <option value=""> --</option>
+            <option th:each="company : ${companies}"
+                    th:value="${company.user.id}"
+                    th:text="${company.user.firstName} + ${company.user.lastName}"></option>
 
-    <input type="submit" value="Create Company">
-</form>
+        </select>
+        <input type="submit" value="Create Company">
+    </form>
 </h1>
 </body>
 </html>

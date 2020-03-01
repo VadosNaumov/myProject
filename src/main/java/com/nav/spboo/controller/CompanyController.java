@@ -28,7 +28,10 @@ public class CompanyController {
     }
 
     @GetMapping("/company-create")
-    public String createCompanyForm(Company company) {
+    public String createCompanyForm(Company company, Model model) {
+        model.addAttribute("company", company);
+        List<Company> companies = companyService.findAll();
+        model.addAttribute("companies", companies);
         return "company-create";
     }
 
@@ -48,6 +51,8 @@ public class CompanyController {
     public String updateCompanyForm(@PathVariable("id") Long id, Model model) {
         Company company = companyService.findById(id);
         model.addAttribute("company", company);
+        List<Company> companies = companyService.findAll();
+        model.addAttribute("companies", companies);
         return "/company-update";
     }
 

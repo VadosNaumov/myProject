@@ -11,23 +11,29 @@
 </head>
 <body bgcolor="#b8d6c1">
 <h1>
-<td><a th:href="@{/main}">Main</a></td>
-<br>
-<td><a th:href="@{/companies}">Companies</a></td>
-<br>
-<br>
-<form action="#" th:action="@{/company-update}" th:object="${company}" method="post">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
-    <br/>
-    <label for="firm">Firm</label>
-    <input type="text" th:field="*{firm}" id="firm" placeholder="Firm">
-    <br/>
-
-
-
-    <input type="submit" value="Update Company">
-</form>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/companies}">Companies</a></td>
+    <br>
+    <td><a th:href="@{/users}">Users</a></td>
+    <br>
+    <br>
+    <form action="#" th:action="@{/company-update}" th:object="${company}" method="post">
+        <label for="id">ID</label>
+        <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+        <br/>
+        <label for="firm">Firm</label>
+        <input type="text" th:field="*{firm}" id="firm" placeholder="Firm">
+        <br/>
+        <select th:field="*{user}">
+            <option value=""> --</option>
+            <option th:each="company : ${companies}"
+                    th:value="${company.user.id}"
+                    th:text="${company.user.firstName} + ${company.user.lastName}"></option>
+        </select>
+        <br/>
+        <input type="submit" value="Update Company">
+    </form>
 </h1>
 </body>
 </html>

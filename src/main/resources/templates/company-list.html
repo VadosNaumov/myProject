@@ -11,34 +11,38 @@
 </head>
 <body bgcolor="#b8d6c1">
 <h1>
-<td><a th:href="@{/main}">Main</a></td>
-<br>
-<br>
-<div th:switch="${companies}">
-    <h2 th:case="null">No companies found!</h2>
-    <div th:case="*">
-        <h2>Companies</h2>
-        <table cellspacing="5" cellpadding="10" border="1">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firm</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="company : ${companies}">
-                <td th:text="${company.id}"></td>
-                <td th:text="${company.firm}"></td>
-
-                <td><a th:href="@{company-update/{id}(id=${company.id})}">Edit</a></td>
-                <td><a th:href="@{company-delete/{id}(id=${company.id})}">Delete</a></td>
-            </tr>
-            </tbody>
-        </table>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/users}">Users</a></td>
+    <br>
+    <br>
+    <div th:switch="${companies}">
+        <h2 th:case="null">No companies found!</h2>
+        <div th:case="*">
+            <h2>Companies</h2>
+            <table cellspacing="5" cellpadding="10" border="1">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Firm</th>
+                    <th>Director f.name</th>
+                    <th>Director l.name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="company : ${companies}">
+                    <td th:text="${company.id}"></td>
+                    <td th:text="${company.firm}"></td>
+                    <td th:text="${company.user.firstName}"></td>
+                    <td th:text="${company.user.lastName}"></td>
+                    <td><a th:href="@{company-update/{id}(id=${company.id})}">Edit</a></td>
+                    <td><a th:href="@{company-delete/{id}(id=${company.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/company-create">Create Company</a></p>
     </div>
-    <p><a href="/company-create">Create Company</a></p>
-</div>
 </h1>
 </body>
 </html>

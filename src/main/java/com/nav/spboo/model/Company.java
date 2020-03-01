@@ -16,9 +16,22 @@ public class Company implements Comparable{
     @Column(name = "firm")
     private String firm;
 
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "director")
+    private User user;
+
     @Override
     public int compareTo(Object o) {
         Company companySecond = (Company) o;
         return firm.compareTo(companySecond.firm);
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", firm='" + firm + '\'' +
+                ", user=" + user.getFirstName() + " " + user.getLastName() +
+                '}';
     }
 }
