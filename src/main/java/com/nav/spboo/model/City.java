@@ -3,6 +3,7 @@ package com.nav.spboo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -19,6 +20,17 @@ public class City implements Comparable{
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
     private Country country;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "city", cascade = CascadeType.DETACH)
+    private Collection<Company> companies;
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
 
     @Override
     public String toString() {

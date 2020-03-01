@@ -20,6 +20,10 @@ public class Company implements Comparable{
     @JoinColumn(name = "director")
     private User user;
 
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "location")
+    private City city;
+
     @Override
     public int compareTo(Object o) {
         Company companySecond = (Company) o;
@@ -32,6 +36,8 @@ public class Company implements Comparable{
                 "id=" + id +
                 ", firm='" + firm + '\'' +
                 ", user=" + user.getFirstName() + " " + user.getLastName() +
+                ", city=" + city.getCityName() +
+                ", country=" + city.getCountry().getState() +
                 '}';
     }
 }

@@ -17,6 +17,8 @@
     <br>
     <td><a th:href="@{/users}">Users</a></td>
     <br>
+    <td><a th:href="@{/cities}">Cities</a></td>
+    <br>
     <br>
     <form action="#" th:action="@{/company-create}" th:object="${company}" method="post">
         <label for="firm">Firm</label>
@@ -28,6 +30,12 @@
                     th:value="${company.user.id}"
                     th:text="${company.user.firstName} + ${company.user.lastName}"></option>
 
+        </select>
+        <select th:field="*{city}">
+            <option value=""> --</option>
+            <option th:each="company : ${companies}"
+                    th:value="${company.city.id}"
+                    th:text="${company.city.cityName}"></option>
         </select>
         <input type="submit" value="Create Company">
     </form>

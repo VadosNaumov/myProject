@@ -17,6 +17,8 @@
     <br>
     <td><a th:href="@{/users}">Users</a></td>
     <br>
+    <td><a th:href="@{/cities}">Cities</a></td>
+    <br>
     <br>
     <form action="#" th:action="@{/company-update}" th:object="${company}" method="post">
         <label for="id">ID</label>
@@ -30,6 +32,13 @@
             <option th:each="company : ${companies}"
                     th:value="${company.user.id}"
                     th:text="${company.user.firstName} + ${company.user.lastName}"></option>
+        </select>
+        <br/>
+        <select th:field="*{city}">
+            <option value=""> --</option>
+            <option th:each="company : ${companies}"
+                    th:value="${company.city.id}"
+                    th:text="${company.city.cityName}"></option>
         </select>
         <br/>
         <input type="submit" value="Update Company">
