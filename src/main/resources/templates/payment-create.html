@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create payment</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
+</head>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/payments}">Payments</a></td>
+    <br>
+    <td><a th:href="@{/companies}">Companies</a></td>
+    <br>
+    <br>
+    <form action="#" th:action="@{/payment-create}" th:object="${payment}" method="post">
+        <label for="date">Date</label>
+        <input type="text" th:field="*{date}" id="date" placeholder="Date">
+        <label for="amount">Amount</label>
+        <input type="text" th:field="*{amount}" id="amount" placeholder="Amount">
+        <label for="comment">Comment</label>
+        <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
+
+        <select th:field="*{company}">
+            <option value=""> --</option>
+            <option th:each="company : ${companies}"
+                    th:value="${company.id}"
+                    th:text="${company.firm}"></option>
+        </select>
+
+        <input type="submit" value="Create Payment">
+    </form>
+</h1>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update account</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
+</head>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/payments}">Payments</a></td>
+    <br>
+    <td><a th:href="@{/companies}">Companies</a></td>
+    <br>
+    <br>
+    <form action="#" th:action="@{/payment-update}" th:object="${payment}" method="post">
+        <label for="id">ID</label>
+        <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+        <br/>
+        <label for="date">Date</label>
+        <input type="text" th:field="*{date}" id="date" placeholder="Date">
+        <br/>
+        <label for="amount">Amount</label>
+        <input type="text" th:field="*{amount}" id="amount" placeholder="Amount">
+        <br/>
+        <label for="comment">Comment</label>
+        <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
+        <br/>
+
+        <select th:field="*{company}">
+            <option value=""> --</option>
+            <option th:each="company : ${companies}"
+                    th:value="${company.id}"
+                    th:text="${company.firm}"></option>
+        </select>
+        <br/>
+        <input type="submit" value="Update Payment">
+    </form>
+</h1>
+</body>
+</html>

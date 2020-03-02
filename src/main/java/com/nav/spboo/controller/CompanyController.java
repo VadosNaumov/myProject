@@ -24,7 +24,10 @@ public class CompanyController {
     private final CityService cityService;
     private final UserService userService;
 
-    public CompanyController(CompanyService companyService, AccountService accountService, CityService cityService, UserService userService) {
+    public CompanyController(CompanyService companyService,
+                             AccountService accountService,
+                             CityService cityService,
+                             UserService userService) {
         this.companyService = companyService;
         this.accountService = accountService;
         this.cityService = cityService;

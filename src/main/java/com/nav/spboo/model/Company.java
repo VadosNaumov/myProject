@@ -3,6 +3,7 @@ package com.nav.spboo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -28,6 +29,9 @@ public class Company implements Comparable{
     @JoinColumn(name = "account")
     private Account account;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company", cascade = CascadeType.DETACH)
+    private Collection<Payment> payments;
+
     @Override
     public int compareTo(Object o) {
         Company companySecond = (Company) o;
@@ -36,6 +40,18 @@ public class Company implements Comparable{
 
     public String getFirm() {
         return firm;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     @Override
