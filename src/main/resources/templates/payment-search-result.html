@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Payments</title>
+    <title>Search-result Payment</title>
     <style>
         h1 {
             font-size: 130%;
@@ -13,10 +13,9 @@
 <h1>
     <td><a th:href="@{/main}">Main</a></td>
     <br>
-    <td><a th:href="@{/companies}">Companies</a></td>
+    <td><a th:href="@{/payments}">Payments</a></td>
     <br>
-    <p><a href="/payment-search">Search Payment</a></p>
-
+    <br>
     <div th:switch="${payments}">
         <h2 th:case="null">No payments found!</h2>
         <div th:case="*">
@@ -54,7 +53,6 @@
                 </tbody>
             </table>
         </div>
-        <p><a href="/payment-create">Create Payment</a></p>
 
     </div>
 </h1>

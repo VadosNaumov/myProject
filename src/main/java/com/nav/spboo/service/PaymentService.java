@@ -32,4 +32,8 @@ public class PaymentService {
     public void deleteById(Long id){
         paymentRepository.deleteById(id);
     }
+
+    public List<Payment> findPaymentByComment(String comment){
+        return paymentRepository.findPaymentByComment(comment);
+    }
 }

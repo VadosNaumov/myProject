@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -64,4 +65,30 @@ public class PaymentController {
         paymentService.savePayment(payment);
         return "redirect:/payments";
     }
+
+    @GetMapping("/payment-search")
+    public String findPaymentForm(Payment payment) {
+        return "/payment-search";
+    }
+
+    @PostMapping("/payment-search")
+    public String findPayment(@RequestParam(name = "comment") String comment,
+                                Model model){
+        Iterable<Payment> payments;
+        if (comment != null && !comment.isEmpty()){
+            payments = paymentService.findPaymentByComment(comment);
+        } else {
+            payments = paymentService.findAll();
+        }
+        model.addAttribute("payments", payments);
+        return "/payment-search-result";
+    }
+
+    @GetMapping("/payment-search-result")
+    public String findPaymentByComment(Payment payment, Model model) {
+        List<Payment> payments = paymentService.findAll();
+        model.addAttribute("payments", payments);
+        return "/payment-search-result";
+    }
+
 }

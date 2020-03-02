@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Search payment</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
+</head>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/payments}">Payments</a></td>
+    <br>
+    <td><a th:href="@{/companies}">Companies</a></td>
+    <br>
+    <br>
+    <form th:action="@{/payment-search}" method="post">
+
+        <input type="text" name="comment">
+
+        <input type="submit" value="Search Payments">
+    </form>
+</h1>
+</body>
+</html>
