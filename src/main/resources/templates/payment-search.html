@@ -19,9 +19,22 @@
     <br>
     <br>
     <form th:action="@{/payment-search}" method="post">
-
-        <input type="text" name="comment">
-
+        <br>
+        <a>Search by amount greater then</a>
+        <br>
+        <input type="number" name="amount">
+        <input type="submit" value="Search Payments">
+        <br>
+        <br>
+        <a>Search by word in comment</a>
+        <br>
+        <input type="text" name="word">
+        <input type="submit" value="Search Payments">
+        <br>
+        <br>
+        <a>Search by country</a>
+        <br>
+        <input type="text" name="country">
         <input type="submit" value="Search Payments">
     </form>
 </h1>

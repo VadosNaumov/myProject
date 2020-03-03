@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -72,11 +73,17 @@ public class PaymentController {
     }
 
     @PostMapping("/payment-search")
-    public String findPayment(@RequestParam(name = "comment") String comment,
+    public String findPayment(@RequestParam(name = "amount") Long amount,
+                              @RequestParam(name = "word") String word,
+                              @RequestParam(name = "country") String country,
                                 Model model){
         Iterable<Payment> payments;
-        if (comment != null && !comment.isEmpty()){
-            payments = paymentService.findPaymentByComment(comment);
+        if (amount != null){
+            payments = paymentService.findPaymentByAmountGreaterThan(amount);
+        } else if (word != null && !word.isEmpty()){
+            payments = paymentService.findPaymentByCommentContains(word);
+        } else if (country != null && !country.isEmpty()){
+            payments = paymentService.findPaymentByCompany_City_Country_State(country);
         } else {
             payments = paymentService.findAll();
         }
