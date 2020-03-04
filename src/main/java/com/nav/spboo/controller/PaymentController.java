@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -76,17 +75,33 @@ public class PaymentController {
     public String findPayment(@RequestParam(name = "amount") Long amount,
                               @RequestParam(name = "word") String word,
                               @RequestParam(name = "country") String country,
-                                Model model){
+                              Model model) {
         Iterable<Payment> payments;
-        if (amount != null){
+
+        boolean a = amount != null && amount != 0;
+        boolean w = word != null && !word.isEmpty();
+        boolean c = country != null && !country.isEmpty();
+
+        if (a && w && c) {
+            payments = paymentService.findPaymentByAmountGreaterThanAndCommentContainsAndCompany_City_Country_State(
+                    amount, word, country
+            );
+        } else if (a && w) {
+            payments = paymentService.findPaymentByAmountGreaterThanAndCommentContains(amount, word);
+        } else if (a && c) {
+            payments = paymentService.findPaymentByAmountGreaterThanAndCompany_City_Country_State(amount, country);
+        } else if (w && c) {
+            payments = paymentService.findPaymentByCommentContainsAndCompany_City_Country_State(word, country);
+        } else if (a) {
             payments = paymentService.findPaymentByAmountGreaterThan(amount);
-        } else if (word != null && !word.isEmpty()){
+        } else if (w) {
             payments = paymentService.findPaymentByCommentContains(word);
-        } else if (country != null && !country.isEmpty()){
+        } else if (c) {
             payments = paymentService.findPaymentByCompany_City_Country_State(country);
         } else {
             payments = paymentService.findAll();
         }
+
         model.addAttribute("payments", payments);
         return "/payment-search-result";
     }

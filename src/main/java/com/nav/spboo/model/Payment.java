@@ -1,7 +1,6 @@
 package com.nav.spboo.model;
 
 import lombok.Data;
-import lombok.Getter;
 
 import javax.persistence.*;
 import java.sql.Date;
