@@ -19,8 +19,8 @@
     <br>
     <br>
     <form action="#" th:action="@{/mail-create}" th:object="${mail}" method="post">
-        <label for="mail">Mail</label>
-        <input type="text" th:field="*{mail}" id="mail" placeholder="Mail">
+        <label for="mailName">Mail</label>
+        <input type="text" th:field="*{mailName}" id="mailName" placeholder="Mail">
 
         <select th:field="*{user}">
             <option value=""> --</option>

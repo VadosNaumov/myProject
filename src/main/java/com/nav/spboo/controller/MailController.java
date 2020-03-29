@@ -54,8 +54,8 @@ public class MailController {
 
     @GetMapping("/mail-update/{id}")
     public String updateMailForm(@PathVariable("id") Long id, Model model) {
-        Mail mailName = mailService.findById(id);
-        model.addAttribute("mailName", mailName);
+        Mail mail = mailService.findById(id);
+        model.addAttribute("mail", mail);
 
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
