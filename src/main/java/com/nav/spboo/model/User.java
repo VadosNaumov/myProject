@@ -21,6 +21,9 @@ public class User implements Comparable{
     private String lastName;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.DETACH)
+    private Collection<Mail> mails;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.DETACH)
     private Collection<Company> companies;
 
     public String getFirstName() {

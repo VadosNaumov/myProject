@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create mail</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
+</head>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/users}">Users</a></td>
+    <br>
+    <td><a th:href="@{/mails}">Mails</a></td>
+    <br>
+    <br>
+    <form action="#" th:action="@{/mail-create}" th:object="${mail}" method="post">
+        <label for="mail">Mail</label>
+        <input type="text" th:field="*{mail}" id="mail" placeholder="Mail">
+
+        <select th:field="*{user}">
+            <option value=""> --</option>
+            <option th:each="user : ${users}"
+                    th:value="${user.id}"
+                    th:text="${user.firstName} + ${user.lastName}"></option>
+        </select>
+        <input type="submit" value="Create Mail">
+    </form>
+</h1>
+</body>
+</html>

@@ -24,12 +24,12 @@ public class CountryController {
         List<Country> countries = countryService.findAll();
         countries.sort(Country::compareTo);
         model.addAttribute("countries", countries);
-        return "/country-list";
+        return "country-list";
     }
 
     @GetMapping("/country-create")
     public String createCountryForm(Country country) {
-        return "/country-create";
+        return "country-create";
     }
 
     @PostMapping("/country-create")
@@ -48,7 +48,7 @@ public class CountryController {
     public String updateCountryForm(@PathVariable("id") Long id, Model model) {
         Country country = countryService.findById(id);
         model.addAttribute("country", country);
-        return "/country-update";
+        return "country-update";
     }
 
     @PostMapping("/country-update")

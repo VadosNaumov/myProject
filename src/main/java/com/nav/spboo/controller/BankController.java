@@ -48,7 +48,7 @@ public class BankController {
     public String updateBankForm(@PathVariable("id") Long id, Model model) {
         Bank bank = bankService.findById(id);
         model.addAttribute("bank", bank);
-        return "/bank-update";
+        return "bank-update";
     }
 
     @PostMapping("/bank-update")

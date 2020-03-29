@@ -48,7 +48,7 @@ public class UserController {
     public String updateUserForm(@PathVariable("id") Long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
-        return "/user-update";
+        return "user-update";
     }
 
     @PostMapping("/user-update")

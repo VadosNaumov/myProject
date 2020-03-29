@@ -28,7 +28,7 @@ public class CityController {
         List<City> cities = cityService.findAll();
         cities.sort(City::compareTo);
         model.addAttribute("cities", cities);
-        return "/city-list";
+        return "city-list";
     }
 
     @GetMapping("/city-create")
@@ -37,7 +37,7 @@ public class CityController {
 
         List<Country> countries = countryService.findAll();
         model.addAttribute("countries", countries);
-        return "/city-create";
+        return "city-create";
     }
 
     @PostMapping("/city-create")
@@ -59,7 +59,7 @@ public class CityController {
 
         List<Country> countries = countryService.findAll();
         model.addAttribute("countries", countries);
-        return "/city-update";
+        return "city-update";
     }
 
     @PostMapping("/city-update")

@@ -57,7 +57,7 @@ public class PaymentController {
         model.addAttribute("payment", payment);
         List<Company> companies = companyService.findAll();
         model.addAttribute("companies", companies);
-        return "/payment-update";
+        return "payment-update";
     }
 
     @PostMapping("/payment-update")
@@ -68,7 +68,7 @@ public class PaymentController {
 
     @GetMapping("/payment-search")
     public String findPaymentForm(Payment payment) {
-        return "/payment-search";
+        return "payment-search";
     }
 
     @PostMapping("/payment-search")
@@ -103,14 +103,14 @@ public class PaymentController {
         }
 
         model.addAttribute("payments", payments);
-        return "/payment-search-result";
+        return "payment-search-result";
     }
 
     @GetMapping("/payment-search-result")
     public String findPaymentByComment(Payment payment, Model model) {
         List<Payment> payments = paymentService.findAll();
         model.addAttribute("payments", payments);
-        return "/payment-search-result";
+        return "payment-search-result";
     }
 
 }

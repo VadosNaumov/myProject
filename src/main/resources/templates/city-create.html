@@ -21,14 +21,7 @@
     <form action="#" th:action="@{/city-create}" th:object="${city}" method="post">
         <label for="cityName">City</label>
         <input type="text" th:field="*{cityName}" id="cityName" placeholder="City">
-<!--
-        <select th:field="*{country}">
-            <option value=""> --</option>
-            <option th:each="city : ${cities}"
-                    th:value="${city.country.id}"
-                    th:text="${city.country.state}"></option>
-        </select>
---->
+
         <select th:field="*{country}">
             <option value=""> --</option>
             <option th:each="country : ${countries}"

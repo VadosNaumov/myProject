@@ -66,7 +66,7 @@ public class AccountController {
         model.addAttribute("banks", banks);
         List<Company> companies = companyService.findAll();
         model.addAttribute("companies", companies);
-        return "/account-update";
+        return "account-update";
     }
 
     @PostMapping("/account-update")

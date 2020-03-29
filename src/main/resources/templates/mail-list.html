@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Mails</title>
+    <style>
+        h1 {
+            font-size: 130%;
+        }
+    </style>
+</head>
+<body bgcolor="#b8d6c1">
+<h1>
+    <td><a th:href="@{/main}">Main</a></td>
+    <br>
+    <td><a th:href="@{/users}">Users</a></td>
+    <br>
+    <br>
+    <div th:switch="${mails}">
+        <h2 th:case="null">No mails found!</h2>
+        <div th:case="*">
+            <h2>Mails</h2>
+            <table cellspacing="5" cellpadding="10" border="1">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Mail</th>
+                    <th>User first name</th>
+                    <th>User last name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="mail : ${mails}">
+                    <td th:text="${mail.id}"></td>
+                    <td th:text="${mail.mailName}"></td>
+                    <td th:text="${mail.user.firstName}"></td>
+                    <td th:text="${mail.user.lastName}"></td>
+                    <td><a th:href="@{mail-update/{id}(id=${mail.id})}">Edit</a></td>
+                    <td><a th:href="@{mail-delete/{id}(id=${mail.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/mail-create">Create Mail</a></p>
+    </div>
+</h1>
+</body>
+</html>
