@@ -1,6 +1,5 @@
 package com.nav.spboo.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +13,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("user")
+                .password("ass")
+                .authorities("ROLE_USER")
+                .and()
+                .withUser("admin")
+                .password("sfqfzf")
+                .authorities("ROLE_ADMIN");
+    }
+
+    @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/");
     }
@@ -21,16 +32,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/").anonymous()
+                .authorizeRequests()
+                .antMatchers("/*create.html").hasRole( "ADMIN")
+                .antMatchers("/*update.html").hasRole( "ADMIN")
+                .antMatchers("/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/").permitAll()
+                .and().formLogin()
                 .and()
-//                .authorizeRequests().antMatchers("/main").authenticated()
-//                .and()
-                .authorizeRequests().antMatchers("/main").hasRole("ADMIN")
-                .and()
-                .formLogin()
-                .and()
-                .logout()
-        ;
+                .logout();
     }
 
     @SuppressWarnings("deprecation")
@@ -39,11 +48,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
     }
 
-    @Autowired
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-//                .withUser("user").password("password").roles("USER")
-//                .and()
-                .withUser("admin").password("password").roles("ADMIN");
-    }
 }
